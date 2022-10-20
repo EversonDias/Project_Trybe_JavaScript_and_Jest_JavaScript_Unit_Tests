@@ -11,6 +11,20 @@
     - average([1, '2']) // Retorno: undefined;
 */
 
-const average = () => {};
+function average(props) {
+  let soma = 0;
+  if (props.length === 0) {
+    return undefined;
+  }
+  for (let index = 0; index < props.length; index += 1) {
+    if (typeof props[index] === 'string') {
+      return undefined;
+    }
+    soma += props[index];
+  }
+  soma = Math.round(soma / props.length);
+
+  return soma;
+}
 
 module.exports = average;
