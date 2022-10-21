@@ -41,5 +41,5 @@ const productDetails = (firstProduct, secondProduct) => [
     },
   },
 ];
-
+console.log(productDetails('ola', 'eu')[0].details.productId);
 module.exports = productDetails;
