@@ -92,7 +92,47 @@
 // - fará a soma do preço desses itens;
 // - retornará o valor somado acrescido de 10%.
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
+let listOfOrder = [];
 
-const createMenu = () => {};
+function comparingOrder(props) {
+  if (props.menu.consumption[props.index] === props.list) {
+    props.account += props.menu.fetchMenu()[props.order][props.list];
+  }
+  return props.account;
+}
+
+const createMenu = (props) => {
+  let account = 0;
+  const menu = {
+    fetchMenu: () => props,
+    order: (listOfItem) => {
+      listOfOrder.push(listOfItem);
+      createMenu.consumption = listOfOrder;
+    },
+    consumption: listOfOrder,
+    pay: () => {
+      const food = Object.keys(menu.fetchMenu().food);
+      const drink = Object.keys(menu.fetchMenu().drink);
+
+      for (let index = 0; index < menu.consumption.length; index += 1) {
+        for (let iOrder = 0; iOrder < food.length; iOrder += 1) {
+          account = comparingOrder({ menu, list: food[iOrder], account, index, order: 'food' });
+        }
+        for (let iOrder = 0; iOrder < drink.length; iOrder += 1) {
+          account = comparingOrder({ menu, list: drink[iOrder], account, index, order: 'drink' });
+        }
+      }
+      
+      const accountWhit10 = (account * 0.10) + account;
+      return accountWhit10;
+    },
+    clear: () => {
+      createMenu.consumption = [];
+      listOfOrder = [];
+    },
+  };
+
+  return menu;
+};
 
 module.exports = createMenu;

@@ -25,5 +25,5 @@ const createStudent = (name) => {
   obj.name = name;
   return obj;
 };
-console.log(createStudent('everson'));
+
 module.exports = createStudent;
